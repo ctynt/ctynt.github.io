@@ -5,17 +5,17 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   
-  <title>复杂选择器权重计算 | Hexo</title>
+  <title>复杂选择器权重计算 | Ctynt&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="层叠性-复杂选择器权重计算层叠性是指多种CSS样式的叠加，也是浏览器处理冲突的一个能力，如果一个属性通过两个相同选择器设置到同一个元素上，那么这个时候一个属性就会将另一个属性层叠掉。 定义CSS样式时，经常出现两个或更多规则应用在同一元素上：  选择器相同，则执行层叠性 选择器不同，就会出现优先级的问题，就会涉及CSS权重计算。  下面详解介绍CSS层叠性权重计算方法。 1) 权重计算公式 值从左">
+  <meta name="description" content="层叠性-复杂选择器权重计算层叠性是指多种CSS样式的叠加，也是浏览器处理冲突的一个能力，如果一个属性通过两个相同选择器设置到同一个元素上，那么这个时候一个属性就会将另一个属性层叠掉。 定义CSS样式时，经常出现两个或更多规则应用在同一元素上：  选择器相同，则执行层叠性 选择器不同，就会出现优先级的问题，就会涉及CSS权重计算。  下面详解介绍CSS层叠性权重计算方法。 1) 权重计算公式值从左到">
 <meta property="og:type" content="article">
 <meta property="og:title" content="复杂选择器权重计算">
 <meta property="og:url" content="http://ctynt.github.io/2023/01/26/%E5%A4%8D%E6%9D%82%E9%80%89%E6%8B%A9%E5%99%A8%E6%9D%83%E9%87%8D%E8%AE%A1%E7%AE%97/index.html">
-<meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="层叠性-复杂选择器权重计算层叠性是指多种CSS样式的叠加，也是浏览器处理冲突的一个能力，如果一个属性通过两个相同选择器设置到同一个元素上，那么这个时候一个属性就会将另一个属性层叠掉。 定义CSS样式时，经常出现两个或更多规则应用在同一元素上：  选择器相同，则执行层叠性 选择器不同，就会出现优先级的问题，就会涉及CSS权重计算。  下面详解介绍CSS层叠性权重计算方法。 1) 权重计算公式 值从左">
+<meta property="og:site_name" content="Ctynt&#39;s Blog">
+<meta property="og:description" content="层叠性-复杂选择器权重计算层叠性是指多种CSS样式的叠加，也是浏览器处理冲突的一个能力，如果一个属性通过两个相同选择器设置到同一个元素上，那么这个时候一个属性就会将另一个属性层叠掉。 定义CSS样式时，经常出现两个或更多规则应用在同一元素上：  选择器相同，则执行层叠性 选择器不同，就会出现优先级的问题，就会涉及CSS权重计算。  下面详解介绍CSS层叠性权重计算方法。 1) 权重计算公式值从左到">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-01-25T16:16:31.000Z">
-<meta property="article:modified_time" content="2023-01-25T16:19:40.781Z">
+<meta property="article:modified_time" content="2023-01-25T16:39:44.618Z">
 <meta property="article:author" content="ctynt">
 <meta property="article:tag" content="CSS">
 <meta name="twitter:card" content="summary">
@@ -120,7 +120,7 @@
         
           <div id="toc" class="toc-article">
             <strong class="toc-title">Contents</strong>
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B1%82%E5%8F%A0%E6%80%A7-%E5%A4%8D%E6%9D%82%E9%80%89%E6%8B%A9%E5%99%A8%E6%9D%83%E9%87%8D%E8%AE%A1%E7%AE%97"><span class="toc-text">层叠性-复杂选择器权重计算</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%9D%83%E9%87%8D%E5%8F%A0%E5%8A%A0"><span class="toc-text">2) 权重叠加</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E7%BB%A7%E6%89%BF%E7%9A%84%E6%9D%83%E9%87%8D%E6%98%AF0"><span class="toc-text">3) 继承的权重是0</span></a></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B1%82%E5%8F%A0%E6%80%A7-%E5%A4%8D%E6%9D%82%E9%80%89%E6%8B%A9%E5%99%A8%E6%9D%83%E9%87%8D%E8%AE%A1%E7%AE%97"><span class="toc-text">层叠性-复杂选择器权重计算</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%9D%83%E9%87%8D%E8%AE%A1%E7%AE%97%E5%85%AC%E5%BC%8F"><span class="toc-text">1) 权重计算公式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%9D%83%E9%87%8D%E5%8F%A0%E5%8A%A0"><span class="toc-text">2) 权重叠加</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E7%BB%A7%E6%89%BF%E7%9A%84%E6%9D%83%E9%87%8D%E6%98%AF0"><span class="toc-text">3) 继承的权重是0</span></a></li></ol></li></ol>
           </div>
         
         <h2 id="层叠性-复杂选择器权重计算"><a href="#层叠性-复杂选择器权重计算" class="headerlink" title="层叠性-复杂选择器权重计算"></a>层叠性-复杂选择器权重计算</h2><p><strong>层叠性是指多种CSS样式的叠加，也是浏览器处理冲突的一个能力，如果一个属性通过两个相同选择器设置到同一个元素上，那么这个时候一个属性就会将另一个属性层叠掉。</strong></p>
@@ -130,8 +130,7 @@
 <li>选择器不同，就会出现优先级的问题，就会涉及CSS权重计算。</li>
 </ul>
 <p>下面详解介绍CSS层叠性权重计算方法。</p>
-<p><strong>1) 权重计算公式</strong></p>
-<p>值从左到右，左面的最大，一级大于一级，数位之间没有进制，级别之间不可超越。</p>
+<h3 id="1-权重计算公式"><a href="#1-权重计算公式" class="headerlink" title="1) 权重计算公式"></a><strong>1) 权重计算公式</strong></h3><p>值从左到右，左面的最大，一级大于一级，数位之间没有进制，级别之间不可超越。</p>
 <p>关于 CSS 权重，我们需要一套计算公式来去计算，这个就是 CSS Specificity (特殊性)</p>
 <table>
 <thead>
