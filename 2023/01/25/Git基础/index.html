@@ -1,0 +1,383 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  
+  <title>Git基础 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="常见指令    命令 说明    git  reflog 查看历史记录   cat &lt;文件名&gt; 查看文件内容   vim 修改文件   git cat-file -t+&lt;id号&gt; 查看文件类型  注意空格   git log -n数字 查看最近n个日志   git commit -u 提交所有文件   git commit -am’’ 将工作区的东西一起加入版本历史   g">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git基础">
+<meta property="og:url" content="http://ctynt.github.io/2023/01/25/Git%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="常见指令    命令 说明    git  reflog 查看历史记录   cat &lt;文件名&gt; 查看文件内容   vim 修改文件   git cat-file -t+&lt;id号&gt; 查看文件类型  注意空格   git log -n数字 查看最近n个日志   git commit -u 提交所有文件   git commit -am’’ 将工作区的东西一起加入版本历史   g">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-01-25T13:49:56.000Z">
+<meta property="article:modified_time" content="2023-01-25T14:02:33.957Z">
+<meta property="article:author" content="ctynt">
+<meta property="article:tag" content="Git">
+<meta name="twitter:card" content="summary">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    <link href="//fonts.useso.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+  
+  
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+<div id="container">
+  <div id="wrap">
+    <!--
+ * @Author: yxtong
+ * @Date: 2023-01-25 20:33:09
+ * @LastEditors: yxtong
+ * @LastEditTime: 2023-01-25 23:21:31
+-->
+<header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <nav id="upper-nav" class="inner">
+      <a id="main-nav-toggle" class="nav-icon"></a>
+      <div class="sub-nav">
+        
+            
+              <a id="nav-github" class="nav-icon" target="_blank" rel="noopener" href="https://github.com/ctynt"></a>
+              
+      </div>
+    </nav>
+    <div id="header-title">
+      
+        <h1 id="blog-title-wrap">
+          <a href="/" id="blog-title">
+            Ctynt&#39;s Blog
+          </a>
+        </h1>
+        
+    </div>
+    <div id="contenedor">
+      <ul class="cube">
+        <li class="cara">
+          Ctynt
+        </li>
+        <li class="cara"></li>
+        <li class="cara"></li>
+        <li class="cara"></li>
+        <li class="cara"></li>
+        <li class="cara"></li>
+      </ul>
+    </div>
+    <nav id="main-nav">
+      
+        <a class="main-nav-link" href="/">
+          Home
+        </a>
+        
+        <a class="main-nav-link" href="/archives">
+          Archives
+        </a>
+        
+        <a class="main-nav-link" href="/about">
+          About
+        </a>
+        
+    </nav>
+  </div>
+</header>
+    <div class="outer">
+      <section id="main"><article id="post-Git基础" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <h3 href="/2023/01/25/Git%E5%9F%BA%E7%A1%80/" class="article-date">
+  <time datetime="2023-01-25T13:49:56.000Z" itemprop="datePublished">2023-01-25</time>
+</h3>
+    
+  </div>
+  <div class="article-inner">
+  <div class="curve-down">
+  <div class="fill-content">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Git基础
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+          <div id="toc" class="toc-article">
+            <strong class="toc-title">Contents</strong>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%BB%BAGit%E4%BB%93%E5%BA%93"><span class="toc-text">1. 建Git仓库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E9%85%8D%E7%BD%AE%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF"><span class="toc-text">2. 配置用户信息</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%881%EF%BC%89-%E9%85%8D%E7%BD%AEglobal%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF"><span class="toc-text">（1） 配置global用户信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%882%EF%BC%89-%E9%85%8D%E7%BD%AElocal%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF"><span class="toc-text">（2） 配置local用户信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%883%EF%BC%89-%E6%9F%A5%E7%9C%8B%E6%96%87%E4%BB%B6%E6%89%80%E9%85%8D%E7%BD%AE%E7%9A%84%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF"><span class="toc-text">（3） 查看文件所配置的用户信息</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E6%B7%BB%E5%8A%A0%E6%96%B0%E6%96%87%E4%BB%B6%E5%88%B0%E7%89%88%E6%9C%AC%E5%8E%86%E5%8F%B2"><span class="toc-text">3. 添加新文件到版本历史</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E7%9C%8B%E7%8A%B6%E5%86%B5"><span class="toc-text">4. 看状况</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E7%9C%8B%E7%89%88%E6%9C%AC%E6%BC%94%E5%8F%98%E5%8E%86%E5%8F%B2"><span class="toc-text">5. 看版本演变历史</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E6%8B%B7%E8%B4%9D%E6%96%87%E4%BB%B6"><span class="toc-text">6. 拷贝文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-%E5%8A%A0%E5%85%A5%E6%96%87%E4%BB%B6%E8%BF%9B%E5%85%A5git%E7%AE%A1%E7%90%86-%E8%BF%9B%E5%85%A5%E6%9A%82%E5%AD%98%E5%8C%BA"><span class="toc-text">7. 加入文件进入git管理(进入暂存区)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-%E6%96%87%E4%BB%B6%E9%87%8D%E5%91%BD%E5%90%8D"><span class="toc-text">8. 文件重命名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-gitk"><span class="toc-text">9. gitk</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-%E5%88%86%E7%A6%BB%E5%A4%B4%E6%8C%87%E9%92%88"><span class="toc-text">10. 分离头指针</span></a></li></ol>
+          </div>
+        
+        <p>常见指令</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>git  reflog</td>
+<td>查看历史记录</td>
+</tr>
+<tr>
+<td>cat &lt;文件名&gt;</td>
+<td>查看文件内容</td>
+</tr>
+<tr>
+<td>vim</td>
+<td>修改文件</td>
+</tr>
+<tr>
+<td>git cat-file -t+&lt;id号&gt;</td>
+<td>查看文件类型  注意空格</td>
+</tr>
+<tr>
+<td>git log -n数字</td>
+<td>查看最近n个日志</td>
+</tr>
+<tr>
+<td>git commit -u</td>
+<td>提交所有文件</td>
+</tr>
+<tr>
+<td>git commit -am’’</td>
+<td>将工作区的东西一起加入版本历史</td>
+</tr>
+<tr>
+<td>git log -graph</td>
+<td>查看合并分支图</td>
+</tr>
+<tr>
+<td>mkdir &lt;文件夹名&gt;</td>
+<td>创建文件夹</td>
+</tr>
+<tr>
+<td>echo ‘内容’ &gt; &lt;文件夹名&#x2F;文件名&gt;</td>
+<td>增添文件夹内文件内容</td>
+</tr>
+<tr>
+<td>pwd</td>
+<td>查看所在目录</td>
+</tr>
+</tbody></table>
+<h2 id="1-建Git仓库"><a href="#1-建Git仓库" class="headerlink" title="1. 建Git仓库"></a>1. 建Git仓库</h2><p>1.把已有的项目代码纳入git管理cd项目代码所在文件夹路径git init</p>
+<p>2.新建项目直接用gi管理cd某个文件夹</p>
+<p>git init +项目名称</p>
+<p>cd +项目名称</p>
+<h2 id="2-配置用户信息"><a href="#2-配置用户信息" class="headerlink" title="2. 配置用户信息"></a>2. 配置用户信息</h2><h3 id="（1）-配置global用户信息"><a href="#（1）-配置global用户信息" class="headerlink" title="（1） 配置global用户信息"></a>（1） 配置global用户信息</h3><p>git config -global user.name’名称’<br>git config -global user.email ‘邮箱’</p>
+<h3 id="（2）-配置local用户信息"><a href="#（2）-配置local用户信息" class="headerlink" title="（2） 配置local用户信息"></a>（2） 配置local用户信息</h3><p>git config -local user.name ‘名称’<br>git config -local user. email ‘邮箱’</p>
+<h3 id="（3）-查看文件所配置的用户信息"><a href="#（3）-查看文件所配置的用户信息" class="headerlink" title="（3） 查看文件所配置的用户信息"></a>（3） 查看文件所配置的用户信息</h3><p>git config -local -ist</p>
+<p>git config -global -list</p>
+<h2 id="3-添加新文件到版本历史"><a href="#3-添加新文件到版本历史" class="headerlink" title="3. 添加新文件到版本历史"></a>3. 添加新文件到版本历史</h2><p>git commit -m’理由’</p>
+<p>git commit -u (将所有归git管的文件- -起提交)</p>
+<p>git commit -am (将工作区的东西- -起加入版本历史中)</p>
+<p>am&#x3D;add+m</p>
+<h2 id="4-看状况"><a href="#4-看状况" class="headerlink" title="4. 看状况"></a>4. 看状况</h2><p>git status</p>
+<h2 id="5-看版本演变历史"><a href="#5-看版本演变历史" class="headerlink" title="5. 看版本演变历史"></a>5. 看版本演变历史</h2><p>git log (可显文件的id号以及 配置用户信息的优先级) (看当前分支的演变历git log –oneline (可查看commit列表)</p>
+<p>git log -n数字(表示最近的几个commit) (也可同时再加–oneline)</p>
+<p>git log -all (可查看所有分支)</p>
+<p>git log -all –graph (可查看演进)</p>
+<h2 id="6-拷贝文件"><a href="#6-拷贝文件" class="headerlink" title="6. 拷贝文件"></a>6. 拷贝文件</h2><p>cp .文件夹名文件名文件类型</p>
+<p>例如: cp ..&#x2F;0-material&#x2F;index.html.01 index.html</p>
+<p>若直接拷贝文件夹到当前路径: cp -r .&#x2F;0-materialimages</p>
+<h2 id="7-加入文件进入git管理-进入暂存区"><a href="#7-加入文件进入git管理-进入暂存区" class="headerlink" title="7. 加入文件进入git管理(进入暂存区)"></a>7. 加入文件进入git管理(进入暂存区)</h2><p>1.git add +文件名</p>
+<p>2.git add . (加入整个文件夹)</p>
+<h2 id="8-文件重命名"><a href="#8-文件重命名" class="headerlink" title="8. 文件重命名"></a>8. 文件重命名</h2><p>1.mv文件名改后的文件名会造成原文件的删除和新文件的添入。</p>
+<p>2.先将新文件加入: git add新文件名</p>
+<p>3.然后删除旧文件: git rm旧文件名</p>
+<p>4.最后git status:查看状态，可以发现git已经自动识别为将文件重命名为新文件名</p>
+<ul>
+<li>如果想撤销记录，可以使用: git reset - -hard (但很危险，因为这样会撤销暂存区工作路径上所有变更，然而输入git I不会破坏git的历史)</li>
+</ul>
+<p>快速改名方法: 1.git mv 文件名 变更后的文件名</p>
+<p>2.git commit -m’注释’</p>
+<h2 id="9-gitk"><a href="#9-gitk" class="headerlink" title="9. gitk"></a>9. gitk</h2><p>概念：gitk是git图形化的界面软件版本,查看历史版本</p>
+<h2 id="10-分离头指针"><a href="#10-分离头指针" class="headerlink" title="10. 分离头指针"></a>10. 分离头指针</h2><p>概念：在Git中branch是指向commit，而HEAD指向branch。所谓的分离头指针状态就是HEAD不再指向分支，而是直接指向某个commit。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <div class="article-footer-content">
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/" rel="tag">Git</a></li></ul>
+
+        <a data-url="http://ctynt.github.io/2023/01/25/Git%E5%9F%BA%E7%A1%80/" data-id="cldbqdqka0000mkumeh559ktf" class="article-share-link">Share</a>
+        
+      </div>
+    </footer>
+  </div>
+  </div>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2023/01/25/Git%E5%88%86%E6%94%AF/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Git分支
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/01/25/JAVA%E5%9F%BA%E7%A1%80%E6%8E%92%E5%BA%8F%E6%96%B9%E6%B3%95/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">java基础排序方法</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+      
+      <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2023/01/26/Start%EF%BC%81%EF%BC%81%EF%BC%81/">Start！！！</a>
+          </li>
+        
+          <li>
+            <a href="/2023/01/26/%E5%A4%8D%E6%9D%82%E9%80%89%E6%8B%A9%E5%99%A8%E6%9D%83%E9%87%8D%E8%AE%A1%E7%AE%97/">复杂选择器权重计算</a>
+          </li>
+        
+          <li>
+            <a href="/2023/01/25/CSS%E4%B9%A6%E5%86%99%E8%A7%84%E8%8C%83/">CSS书写规范</a>
+          </li>
+        
+          <li>
+            <a href="/2023/01/25/HTML5%E9%A1%B5%E9%9D%A2%E6%B8%B2%E6%9F%93%E6%9C%BA%E5%88%B6/">HTML5页面渲染机制</a>
+          </li>
+        
+          <li>
+            <a href="/2023/01/25/%E4%BB%8A%E5%A4%A9%EF%BC%8C%E5%A6%88%E5%A6%88%E6%AD%BB%E4%BA%86%EF%BC%8C%E6%88%96%E8%AE%B8%E6%98%AF%E6%98%A8%E5%A4%A9%EF%BC%8C%E6%88%91%E6%90%9E%E4%B8%8D%E6%B8%85/">“今天，妈妈死了，或许是昨天，我搞不清”</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/" rel="tag">CSS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Daliy-Life/" rel="tag">Daliy Life</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/" rel="tag">Git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/" rel="tag">HTML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Reading-Notes/" rel="tag">Reading Notes</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UI/" rel="tag">UI</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ps/" rel="tag">ps</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a><span class="archive-list-count">10</span></li></ul>
+    </div>
+  </div>
+
+  
+</aside>
+      
+    </div>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2023 ctynt<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      .
+      Theme by <a href="https://github.com/sun11/hexo-theme-paperbox" target="_blank">Paperbox</a>
+    </div>
+  </div>
+</footer>
+  </div>
+  <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav>
+
+  
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    menuSettings: {
+      zoom: "None"
+    },
+    showMathMenu: false,
+    jax: ["input/TeX","output/CommonHTML"],
+    extensions: ["tex2jax.js"],
+    TeX: {
+      extensions: ["AMSmath.js","AMSsymbols.js"],
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+  });
+</script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script>
+
+
+
+<!-- totop start -->
+<div id="totop">
+	<a title="To Top"></a>
+</div>
+<!-- totop end -->
+
+<!-- swiftype search start -->
+
+<!-- swiftype search end -->
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/lrsjng.jquery-qrcode/0.12.0/jquery.qrcode.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+</div>
+</body>
+</html>
